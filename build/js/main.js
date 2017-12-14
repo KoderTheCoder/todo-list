@@ -1,6 +1,7 @@
 class Task{
-  constructor(task){
+  constructor(task, quantity){
     this.name = task;
+    this.quantity = quantity;
     this.id = new Date().getTime();
     this.status = 0;
     return this;
@@ -23,12 +24,30 @@ var formmodule = (
   }()
 );
 
+
+//form module
+var formmodule2 = (
+  function () {
+    var formobj = {};
+    const formelm = document.getElementById('task-form');
+    const inputelm = document.getElementById('task-quantity');
+
+    formobj.getValue = function() {
+      inputval = inputelm.value;
+      formobj.val = inputval;
+      return inputval;
+    }
+    return formobj;
+  }()
+);
+
+
 var task = ( function(){
   var object = {};
   object.taskArray = [];
   
-  object.add = function(taskname){
-    let taskitem = new Task(taskname);
+  object.add = function(taskname, quantity){
+    let taskitem = new Task(taskname, quantity);
     object.taskArray.push(taskitem);
     object.sort();
   }
@@ -114,8 +133,9 @@ var template = ( function(){
     temphtml.setAttribute('data-id',taskobj.id);
     temphtml.setAttribute('data-status',taskobj.status);
     temphtml.setAttribute('data-name',taskobj.name);
+    temphtml.setAttribute('data-quantity',taskobj.quantity);
     
-    temphtml.querySelector('.task-text').innerText = taskobj.name;
+    temphtml.querySelector('.task-text').innerText = taskobj.name + ": " + taskobj.quantity;
     //temphtml.querySelector('.task-text').setAttribute('data-id',taskobj.id);
     //temphtml.querySelector('.task-row').setAttribute('data-id',taskobj.id);
     temphtml.querySelector('button[data-function="delete"]').setAttribute('data-id',taskobj.id);
@@ -201,8 +221,13 @@ var app = (function(){
   form.addEventListener('submit',(event) => {
     event.preventDefault();
     let newtask = formmodule.getValue();
-    if(newtask){
-      task.add(newtask);
+    let newquant = formmodule2.getValue();
+    if(newtask && newquant){
+      task.add(newtask, newquant);
+      storage.store(task.taskArray);
+      uimodule.render();
+    }else{
+      task.add(newtask, 1);
       storage.store(task.taskArray);
       uimodule.render();
     }

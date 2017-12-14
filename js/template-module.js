@@ -14,8 +14,9 @@ var template = ( function(){
     temphtml.setAttribute('data-id',taskobj.id);
     temphtml.setAttribute('data-status',taskobj.status);
     temphtml.setAttribute('data-name',taskobj.name);
+    temphtml.setAttribute('data-quantity',taskobj.quantity);
     
-    temphtml.querySelector('.task-text').innerText = taskobj.name;
+    temphtml.querySelector('.task-text').innerText = taskobj.name + ": " + taskobj.quantity;
     //temphtml.querySelector('.task-text').setAttribute('data-id',taskobj.id);
     //temphtml.querySelector('.task-row').setAttribute('data-id',taskobj.id);
     temphtml.querySelector('button[data-function="delete"]').setAttribute('data-id',taskobj.id);

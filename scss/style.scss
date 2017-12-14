@@ -40,6 +40,7 @@ body{
   font-family:$main-font;
   font-size: $main-font-size;
   overflow: hidden;
+  background-color: hsl(139, 100%, 68%);
 }
 header{
   height: $header-height;
@@ -151,6 +152,13 @@ footer{
   #task-form{
     @include row;
     #task-input{
+      padding:10px;
+      font-size: $input-font-size;
+      color: $input-color;
+      border:1px solid $input-color;
+      flex:1;
+    }
+    #task-quantity{
       padding:10px;
       font-size: $input-font-size;
       color: $input-color;
