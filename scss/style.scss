@@ -1,4 +1,4 @@
-$main-color: hsl(54, 83%, 75%);
+$main-color: hsl(123, 100%, 37%);
 $header-bg: darken($main-color, 10%);
 $main-font: arial,helvetica,sans-serif;
 $main-font-size:16px;
@@ -134,10 +134,10 @@ main{
           background-position:center;
         }
         button[data-function="status"]{
-          background-image:url('../images/check.png');
+          background-image:url('../images/tick.png');
         }
         button[data-function="delete"]{
-          background-image:url('../images/times.png');
+          background-image:url('../images/cross.png');
         }
       }
     }
