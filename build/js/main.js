@@ -46,8 +46,8 @@ var task = ( function(){
   var object = {};
   object.taskArray = [];
   
-  object.add = function(taskname, quantity){
-    let taskitem = new Task(taskname, quantity);
+  object.add = function(taskname){
+    let taskitem = new Task(taskname);
     object.taskArray.push(taskitem);
     object.sort();
   }
@@ -224,10 +224,6 @@ var app = (function(){
     let newquant = formmodule2.getValue();
     if(newtask && newquant){
       task.add(newtask, newquant);
-      storage.store(task.taskArray);
-      uimodule.render();
-    }else{
-      task.add(newtask, 1);
       storage.store(task.taskArray);
       uimodule.render();
     }
